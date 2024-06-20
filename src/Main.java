@@ -1,85 +1,58 @@
-import java.util.Scanner;
+import estructura.*;
 
+// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        DataStructureManager manager = new DataStructureManager();
-        Scanner scanner = new Scanner(System.in);
-        String option;
-        int value;
+        Estructura arbol = new Arbol(10);
+        arbol.agregar(5);
+        arbol.agregar(6);
+        arbol.agregar(12);
+        arbol.agregar(90);
+        arbol.agregar(3);
 
-        while (true) {
-            System.out.println("Seleccione la estructura de datos:");
-            System.out.println("1. Lista enlazada");
-            System.out.println("2. Lista doblemente enlazada");
-            System.out.println("3. Lista circular");
-            System.out.println("4. Lista doblemente circular");
-            System.out.println("5. Árbol AVL");
-            System.out.println("6. Árbol Rojo-Negro");
-            System.out.println("7. Salir");
+        // Recorrido InOrden
+        // Debería imprimir los valores en orden ascendente
+        System.out.println("Recorrido InOrden:");
+        ((Arbol) arbol).InOrden();
 
-            option = scanner.nextLine();
+        // Recorrido PreOrden
+        System.out.println("Recorrido PreOrden:");
+        ((Arbol) arbol).PreOrden();
 
-            switch (option) {
-                case "1":
-                    manager.setStructure("lista enlazada");
-                    break;
-                case "2":
-                    manager.setStructure("lista doblemente enlazada");
-                    break;
-                case "3":
-                    manager.setStructure("lista circular");
-                    break;
-                case "4":
-                    manager.setStructure("lista doblemente circular");
-                    break;
-                case "5":
-                    manager.setStructure("árbol avl");
-                    break;
-                case "6":
-                    manager.setStructure("árbol rojo negro");
-                    break;
-                case "7":
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
-                    continue;
-            }
+        // Recorrido PostOrden
+        // Debería imprimir los valores de los subárboles primero y finalmente el valor de la raíz
+        System.out.println("Recorrido PostOrden:");
+        ((Arbol) arbol).PostOrden();
 
-            while (true) {
-                System.out.println("Seleccione la operación:");
-                System.out.println("1. Añadir");
-                System.out.println("2. Eliminar");
-                System.out.println("3. Recorrer (InOrder para árboles)");
-                System.out.println("4. Volver");
 
-                option = scanner.nextLine();
+        System.out.println("Lista Enlazada:");
+        ListaEnlazada lista = new ListaEnlazadaSimple();
+        ((ListaEnlazadaSimple) lista).agregar(1);
+        ((ListaEnlazadaSimple) lista).agregar(2);
+        ((ListaEnlazadaSimple) lista).agregar(3);
+        ((ListaEnlazadaSimple) lista).imprimir();
 
-                switch (option) {
-                    case "1":
-                        System.out.print("Ingrese el valor a añadir: ");
-                        value = Integer.parseInt(scanner.nextLine());
-                        manager.add(value);
-                        break;
-                    case "2":
-                        System.out.print("Ingrese el valor a eliminar: ");
-                        value = Integer.parseInt(scanner.nextLine());
-                        manager.delete(value);
-                        break;
-                    case "3":
-                        manager.inOrder(); // Asumiendo que solo se hará inOrder traversal para los árboles
-                        break;
-                    case "4":
-                        break;
-                    default:
-                        System.out.println("Opción no válida. Intente de nuevo.");
-                        continue;
-                }
+        System.out.println("Lista Circular:");
+        ListaDobleEnlazada listaDoble = new ListaDobleEnlazada();
+        listaDoble.agregar(1);
+        listaDoble.agregar(2);
+        listaDoble.agregar(3);
+        listaDoble.imprimir();
 
-                if (option.equals("4")) {
-                    break;
-                }
-            }
+        System.out.println("Lista Circular:");
+        ListaCircular listaCircular = new ListaCircular();
+        listaCircular.agregar(17);
+        listaCircular.agregar(21);
+        listaCircular.agregar(26);
+        listaCircular.imprimir();
+
+        System.out.println("Lista Doblemente Circular:");
+        ListaDoblementeCircular listaDobleCircular = new ListaDoblementeCircular();
+        listaDobleCircular.agregar(9);
+        listaDobleCircular.agregar(10);
+        listaDobleCircular.agregar(78);
+        listaDobleCircular.imprimir();
         }
     }
-}
+
